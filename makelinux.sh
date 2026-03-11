@@ -65,6 +65,7 @@ find . -depth -name *msix* | xargs -0 -r rm -rf
 echo "cmake -DCMAKE_BUILD_TYPE="$build "-DSKIP_BUNDLES="$bundle "-DUSE_VALIDATION_PARSER="$validationParser 
 echo "-DCMAKE_TOOLCHAIN_FILE=../cmake/linux.cmake" "-DMSIX_PACK="$pack "-DMSIX_SAMPLES="$samples "-DMSIX_TESTS="$tests "-DLINUX=on .."
 cmake -DCMAKE_BUILD_TYPE=$build \
+      -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
       -DSKIP_BUNDLES=$bundle \
       -DUSE_VALIDATION_PARSER=$validationParser \
       -DCMAKE_TOOLCHAIN_FILE=../cmake/linux.cmake \
