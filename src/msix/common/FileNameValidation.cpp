@@ -272,7 +272,7 @@ namespace MSIX {
         // Relationship Part URI must have a .rels extension and be under a _rels subfolder
         if (hasRelsSubFolder)
         {
-            std::string ext = Helper::tolower(name.substr(name.find_last_of(".") + 1));
+            std::string ext = GetExtension(name);
             if (ext == "rels")
             {
                 return false;
@@ -303,4 +303,14 @@ namespace MSIX {
         return ((lowIdent.rfind("appxmetadata", 0) != std::string::npos) ||
                 (lowIdent.rfind("microsoft.system.package.metadata", 0) != std::string::npos));
     }
+    
+    std::string FileNameValidation::GetExtension(const std::string& name)
+    {
+        auto pos_ext = name.find_last_of(".") + 1;
+	auto pos_dir = std::max(name.find_last_of("/") + 1, name.find_last_of("\\") + 1);
+	if (pos_ext < pos_dir)
+	    return {};
+	return Helper::tolower(name.substr(pos_ext));
+    }
+
 }

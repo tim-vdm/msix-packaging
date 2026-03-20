@@ -57,7 +57,7 @@ namespace MSIX {
             // and any other will be ignored and a new one will be created for the package. 
             if(!(FileNameValidation::IsFootPrintFile(file.second) || FileNameValidation::IsReservedFolder(file.second)))
             {
-                std::string ext = Helper::tolower(file.second.substr(file.second.find_last_of(".") + 1));
+		std::string ext = FileNameValidation::GetExtension(file.second);
                 auto contentType = ContentType::GetContentTypeByExtension(ext);
                 auto stream = from.As<IStorageObject>()->GetFile(file.second);
                 ValidateAndAddPayloadFile(file.second, stream.Get(), contentType.GetCompressionOpt(), contentType.GetContentType().c_str());
