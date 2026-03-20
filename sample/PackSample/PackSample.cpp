@@ -7,6 +7,7 @@
 #include <vector>
 #include <map>
 #include <queue>
+#include <memory>
 
 #ifndef WIN32
 #include <fts.h>
